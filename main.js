@@ -56,6 +56,16 @@ function detectPersonalLevel(){
 
 detectPersonalLevel();
 
+function writeYourGenres(){
+    for (let i=1;i<=3; i++){
+        // let gen = prompt('What is your favourite genres at number '+i+'?');
+        let gen = prompt(`What is your favourite genres at number ${i}?`);
+        personalMovieDB.genres[i-1]=gen;
+    }
+}
+
+writeYourGenres();
+
 personalMovieDB.privat=confirm('Is your DB privat?');
 
 function showMyDB(){
