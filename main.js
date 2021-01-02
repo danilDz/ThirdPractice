@@ -3,11 +3,11 @@
 let numberOfFilms;
 
 function start(){
-    numberOfFilms=+prompt('How many films did you watch?');
+    numberOfFilms=+prompt('How many films did you watch?','');
 
     while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
         alert('Write the quantity of films again!');
-        numberOfFilms=+prompt('How many films did you watch?');
+        numberOfFilms=+prompt('How many films did you watch?','');
     }
 }
 
@@ -18,11 +18,11 @@ let personalMovieDB={
     movies:{},
     actors:{},
     genres:[],
-    privat:false
+    privat:true
 };
 
 let movie='';
-let rate;
+let rate=Number;
 
 function rememberMyFilms(){
     for (let i = 1; i<=numberOfFilms;i++){
@@ -31,10 +31,10 @@ function rememberMyFilms(){
             alert('Write a name of film again!');
             movie=prompt('What film did you watch last time?');
         }
-        rate=prompt('How would you rate it?');
-        if (rate=='' || +rate>10 || +rate<0 || typeof(+rate)!=Number){
+        rate=prompt('How would you rate it?','');
+        if (rate=='' || rate>10 || rate<0 ){
             alert('Write a rate of film again!');
-            rate=prompt('How would you rate it?');
+            rate=prompt('How would you rate it?','');
         }
         personalMovieDB.movies[movie]=rate;
     }
@@ -56,4 +56,14 @@ function detectPersonalLevel(){
 
 detectPersonalLevel();
 
-console.log(personalMovieDB);
+personalMovieDB.privat=confirm('Is your DB privat?');
+
+function showMyDB(){
+    if (personalMovieDB.privat == false){
+        console.log(personalMovieDB);
+    } else {
+        console.log('We cannnot show your DB!');
+    }
+} 
+
+showMyDB();
